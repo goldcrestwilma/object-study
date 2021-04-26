@@ -155,7 +155,7 @@ DiscountPolicy 라는 추상 클래스(abstract class)를 구현하여 부모클
 
 어떤 클래스가 다른 클래스에 접근할 수 있는 경로를 가지거나 해당 클래스의 객체의 메서드를 호출할 경우 두 클래스 사이에 의존성이 존재한다고 말한다.
 
-![https://github.com/goldcrestwilma/object-study/blob/main/Untitled%20Diagram.png?raw=true](https://github.com/goldcrestwilma/object-study/blob/main/Untitled%20Diagram.png?raw=true)
+![https://github.com/goldcrestwilma/object-study/blob/main/object-chapter2_2.7.png?raw=true](https://github.com/goldcrestwilma/object-study/blob/main/object-chapter2_2.7.png?raw=true)
 
 `Movie` 클래스가 `DiscountPolicy` 클래스와 연결
 
