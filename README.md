@@ -1,7 +1,7 @@
 # object-study
 
-도서
-오브젝트: 코드로 이해하는 객체지향 설계, 저자: 조영호
+
+📕 오브젝트: 코드로 이해하는 객체지향 설계, 저자: 조영호
 ---
 
 - [1. 객체, 설계](https://github.com/goldcrestwilma/object-study/tree/main/1.%20%EA%B0%9D%EC%B2%B4%2C%20%EC%84%A4%EA%B3%84)
