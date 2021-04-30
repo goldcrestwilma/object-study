@@ -39,6 +39,17 @@
 
 > 객체가 참여하는 협력이 객체를 구성하는 행동과 상태 모두를 결정하고 협력은 객체를 설계하는 데 필요한 일종의 `**문맥(context)**`을 제공한다.
 
+```java
+public class Movie {
+	private Money fee;
+	private DiscountPolicy discountPolicy;
+
+	public Money calculateMovieFee(Screening screening) {
+		return fee.minus(discountPolicy.calculateDiscountAmount(screening));
+	}
+}
+```
+
 ---
 
 ### 책임이란 무엇인가
@@ -160,13 +171,43 @@ Screening이 reserve 메시지를 수신하고 `movie`를 인스턴스 변수로
 
 책임과 역할을 중심으로 협력을 바라보는 것이 변경과 확장이 용이한 유연한 설계를 위한 길이다.
 
-역할을 구현하는 가장 일반적인 방법은 **추상 클래스**와 **인터페이스**를 사용하는 것이다. 
+`역할`을 구현하는 가장 일반적인 방법은 **`추상 클래스`**와 **`인터페이스`**를 사용하는 것이다. 
 
-추상 클래스 - 책임의 일부를 구현해 놓은 것
+- 추상 클래스 - 책임의 일부를 구현해 놓은 것
 
-인터페이스 - 일체의 구현없이 책임의 집합만을 나열
+```java
+public abstract class DiscountPolicy {
+	private List<DiscountCondition> conditions = new ArrayList<>();
+	
+	public DiscountPolicy(DiscountCondition ... conditions) {
+		this.conditions = Arrays.asList(conditions);
+	}
+
+	public Money calculateDiscountAmount(Screening screening) {
+		for (DiscountCondition each : conditions) {
+			if (each.isSatisfiedBy(screening) {
+				return getDiscountAmount(screening);
+			}
+		}
+
+		return Money.ZERO;
+	}
+
+	abstract protected Money getDiscountAmount(Screening screening);
+}
+```
+
+- 인터페이스 - 일체의 구현없이 책임의 집합만을 나열
+
+```java
+public interface DiscountCondition {
+	boolean isSatisfiedBy(Screening screening);
+}
+```
 
 둘의 차이점이 있지만 협력의 관점에서는 둘 모두 역할을 정의할 수 있는 구현 방법이라는 공통점을 공유한다.
+
+> 역할이 다양한 종류의 객체를 수용할 수 있는 일종의 슬롯이자 구체적인 객체들의 타입을 캡슐화하는 추상화
 
 ---
 
